@@ -109,7 +109,7 @@ const AllPosts = () => {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer${user.token}`,
+            Authorization: `Bearer ${user.token}`,
           },
           body: JSON.stringify({
             title: editedTodo.title,
@@ -126,10 +126,15 @@ const AllPosts = () => {
       setPosts((prevPosts) =>
         prevPosts.map((post) =>
           post._id === editedTodo.id
-            ? { ...post, title, description: content }
+            ? {
+                ...post,
+                title: editedTodo.title,
+                description: editedTodo.content,
+              }
             : post
         )
       );
+
       closeEditModal();
     } catch (error) {
       console.error('Error while trying to edit post');

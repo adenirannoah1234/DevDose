@@ -51,6 +51,11 @@
     padding-top: 100px;
   }
 
+  .blogs h2, .blogs h3{
+    font-weight: 500;
+    font-size: 18px;
+  }
+
   .blog{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -76,11 +81,11 @@
   }
 
   .content1{
-    padding: 30px;
+    padding: 25px;
   }
 
   .content1 h3{
-    font-size: 23px;
+    font-size: 20px;
     font-weight: 700;
   }
 
@@ -246,7 +251,7 @@
     background-color: #fff;
     position: fixed;
     top: -50%;
-    left: 50%;
+    left: 20%;
     width: 70%;
     padding: 30px;
     text-align: center;
