@@ -7,12 +7,26 @@ import {
   StackDivider,
   Spacer,
   Button,
+  FormControl,
+  Input,
+  FormHelperText,
+  FormLabel,
+  Textarea,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  ModalFooter,
   Badge,
 } from '@chakra-ui/react';
 import { FaTrash } from 'react-icons/fa';
 
 const AllPosts = () => {
   const [posts, setPosts] = useState([]);
+  const [editedTodo, setEditedTodo] = useState({ id: null, title: '' });
+  const [isEditing, setIsEditing] = useState(false);
   const [remove, setRemove] = useState([]);
   const user = JSON.parse(localStorage.getItem('user'));
   const allPost = async () => {
@@ -68,6 +82,59 @@ const AllPosts = () => {
       console.error('Error while trying to delete post', error);
     }
   };
+
+  const openEditModal = (postId, title, content) => {
+    setEditedTodo({
+      id: postId,
+      title: title,
+      content: content,
+    });
+    setIsEditing(true);
+  };
+
+  const closeEditModal = () => {
+    console.log('Closing modal...');
+
+    setIsEditing(false);
+    setEditedTodo({ id: null, title: '', content: '' });
+  };
+
+  const editTodo = async () => {
+    try {
+      console.log('Editing post:', editedTodo);
+
+      const response = await fetch(
+        `https://mytaskz.onrender.com/tasks/${editedTodo.id}`,
+        {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer${user.token}`,
+          },
+          body: JSON.stringify({
+            title: editedTodo.title,
+            description: editedTodo.content,
+          }),
+        }
+      );
+      if (!response.ok) {
+        console.error(
+          `Server error: ${response.status} - ${response.statusText}`
+        );
+        return;
+      }
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
+          post._id === editedTodo.id
+            ? { ...post, title, description: content }
+            : post
+        )
+      );
+      closeEditModal();
+    } catch (error) {
+      console.error('Error while trying to edit post');
+    }
+  };
   return (
     <VStack
       divider={<StackDivider />}
@@ -89,9 +156,62 @@ const AllPosts = () => {
               w="100%"
               maxW={{ base: '200vw' }}
             >
-              <Text>{post.title}</Text>
+              {isEditing && editedTodo.id === post._id ? (
+                // If currently editing this todo, show the input fields in the modal
+                <Modal isOpen={isEditing} onClose={closeEditModal}>
+                  <ModalOverlay />
+                  <ModalContent>
+                    <ModalHeader>Edit Todo</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                      <FormControl>
+                        <FormLabel>Title</FormLabel>
+                        <Input
+                          type="text"
+                          value={editedTodo.title}
+                          onChange={(e) =>
+                            setEditedTodo({
+                              ...editedTodo,
+                              title: e.target.value,
+                            })
+                          }
+                        />
+                      </FormControl>
+                      <FormControl mt={4}>
+                        <FormLabel>Content</FormLabel>
+                        <Textarea
+                          value={editedTodo.content}
+                          onChange={(e) =>
+                            setEditedTodo({
+                              ...editedTodo,
+                              content: e.target.value,
+                            })
+                          }
+                        />
+                      </FormControl>
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button colorScheme="blue" mr={3} onClick={editTodo}>
+                        Save
+                      </Button>
+                      <Button variant="ghost" onClick={closeEditModal}>
+                        Cancel
+                      </Button>
+                    </ModalFooter>
+                  </ModalContent>
+                </Modal>
+              ) : (
+                // Otherwise, show the todo title
+                <Text>{post.title}</Text>
+              )}
               <Spacer />
-              <Button>Edit</Button>
+              <Button
+                onClick={() =>
+                  openEditModal(post._id, post.title, post.content)
+                }
+              >
+                Edit
+              </Button>
               <IconButton
                 icon={<FaTrash />}
                 isRound

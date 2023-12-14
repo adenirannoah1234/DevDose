@@ -48,53 +48,55 @@ const SignIn = () => {
     }
   };
 
-  useEffect(() => {
-    Login();
-  }, []);
+  // useEffect(() => {
+  //   Login();
+  // }, []);
 
   return (
-    <form className="log-in" onSubmit={handleUserLogin}>
-      <div className="mail">
-        <label htmlFor="Email">Email:</label>
-        <input
-          type="Email"
-          id="Email"
-          name="Email"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div className="pass">
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <button
-          type="submit"
-          style={{
-            color: 'white',
-            backgroundColor: 'blue',
-            padding: '10px 20px',
-            marginTop: '20PX',
-          }}
-        >
-          Submit
-        </button>
-      </div>
+    <div className="logs" style={{ paddingTop: '100px' }}>
+      <form className="log-in" onSubmit={handleUserLogin}>
+        <div className="mail">
+          <label htmlFor="Email">Email:</label>
+          <input
+            type="Email"
+            id="Email"
+            name="Email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="pass">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <button
+            type="submit"
+            style={{
+              color: 'white',
+              backgroundColor: 'blue',
+              padding: '10px 20px',
+              marginTop: '20PX',
+            }}
+          >
+            Submit
+          </button>
+        </div>
 
-      <div className="option">
-        <p>Don't have an account?</p>
-        <Link style={{ color: 'purple' }} to="/SignUp">
-          Sign up
-        </Link>
-      </div>
-    </form>
+        <div className="option">
+          <p>Don't have an account?</p>
+          <Link style={{ color: 'purple' }} to="/SignUp">
+            Sign up
+          </Link>
+        </div>
+      </form>
+    </div>
   );
 };
 

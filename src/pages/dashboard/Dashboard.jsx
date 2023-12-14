@@ -23,7 +23,7 @@ const Dashboard = () => {
         p="4"
         borderRadius="md"
         backgroundColor="#d1d5db"
-        mt="10"
+        mt="100"
         mb="10"
       >
         {/* <Box border="3px"> */}

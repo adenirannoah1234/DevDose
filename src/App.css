@@ -14,7 +14,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 30px;
-    height: 60px;
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
     /* background-color: #030712; */
     background-color: #3498db ;
   }
@@ -44,6 +47,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 30px 30px;
+    padding-top: 100px;
   }
 
   .blog{
@@ -87,22 +91,20 @@
     width: 400px;
     margin-left: auto;
     margin-right: auto;
-    /* background-color: #030712; */
     background-color: #d1d5db;
     color: #fefefe;
-    margin-top: 40px;
     padding: 40px;
     border-radius: 5px;
   }
+
 
   .signup{
     width: 400px;
     margin-left: auto;
     margin-right: auto;
-    background-color: #ff7675;
+    background-color: #d1d5db;
     color: #fefefe;
-    margin-top: 40px;
-    padding: 40px;
+    padding: 20px 40px;
     border-radius: 5px;
     margin-bottom: 50px;
   }
@@ -200,6 +202,24 @@
   display: none; /* Hide by default for larger screens */
 }
 
+@media screen and (max-width: 992px){
+  .blog{
+    padding: 70px;
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+@media screen and (max-width: 768px){
+.blog{
+  padding: 20px;
+}
+}
+@media screen and (max-width: 576px){
+.blog{
+  grid-template-columns: repeat(1,1fr);
+  padding: 50px;
+}
+}
+
 @media screen and (max-width: 480px) {
   .menu-icon {
     display: block;
@@ -218,11 +238,7 @@
     width: 100%;
   }
 
-  /* Adjust or remove this rule based on your design */
-  .dropbtn {
-    /* Keep or adjust styling properties based on your design */
-  }
-
+  
   #main-id {
     flex-direction: column;
     background-color: #fff;
@@ -237,4 +253,9 @@
     transition: 0.5s;
     z-index: 99;
   }
+}
+@media screen and (max-width: 375px){
+.blog{
+  padding: 10px;
+}
 }

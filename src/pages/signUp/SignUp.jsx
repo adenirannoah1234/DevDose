@@ -57,67 +57,69 @@ const SignUp = () => {
   }, []);
 
   return (
-    <form className="signup" onSubmit={handleUserSignUp}>
-      <div className="password">
-        <label htmlFor="Email">Email:</label>
-        <input
-          type="Email"
-          id="Email"
-          name="Email"
-          placeholder="Email"
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div className="password">
-        <label htmlFor="password">Username:</label>
-        <input
-          type="text"
-          id="text"
-          name="text"
-          placeholder="username"
-          onChange={(e) => setUserName(e.target.value)}
-        />
-      </div>
-      <div className="password">
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div className="password">
-        <label htmlFor="password">ConfirmPassword:</label>
-        <input
-          type="password"
-          id="confirmpassword"
-          name="confirmpassword"
-          placeholder="confirmpassword"
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-      </div>
-      <div style={{ textAlign: 'center' }}>
-        <button
-          type="submit"
-          style={{
-            color: 'white',
-            backgroundColor: 'pink',
-            padding: '10px 20px',
-            marginTop: '20PX',
-          }}
-        >
-          Submit
-        </button>
-      </div>
-      <div className="option">
-        <p>Already have an account?</p>
-        <Link style={{ color: 'purple' }} to="/SignIn">
-          Login
-        </Link>
-      </div>
-    </form>
+    <div style={{ paddingTop: '100px' }}>
+      <form className="signup" onSubmit={handleUserSignUp}>
+        <div className="password">
+          <label htmlFor="Email">Email:</label>
+          <input
+            type="Email"
+            id="Email"
+            name="Email"
+            placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="password">
+          <label htmlFor="password">Username:</label>
+          <input
+            type="text"
+            id="text"
+            name="text"
+            placeholder="username"
+            onChange={(e) => setUserName(e.target.value)}
+          />
+        </div>
+        <div className="password">
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div className="password">
+          <label htmlFor="password">ConfirmPassword:</label>
+          <input
+            type="password"
+            id="confirmpassword"
+            name="confirmpassword"
+            placeholder="confirmpassword"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <button
+            type="submit"
+            style={{
+              color: 'white',
+              backgroundColor: 'blue',
+              padding: '10px 20px',
+              marginTop: '20PX',
+            }}
+          >
+            Submit
+          </button>
+        </div>
+        <div className="option">
+          <p>Already have an account?</p>
+          <Link style={{ color: 'purple' }} to="/SignIn">
+            Login
+          </Link>
+        </div>
+      </form>
+    </div>
   );
 };
 

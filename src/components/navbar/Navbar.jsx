@@ -34,6 +34,7 @@ const Navbar = () => {
       <div className="menu-icon" onClick={toggleNav}>
         {openNav ? <FaTimes /> : <FaBars />}
       </div>
+      <div></div>
       <div id="main-id" className={openNav ? 'visible' : ''}>
         {user ? (
           <div className="dropdown">
